@@ -1,4 +1,4 @@
-dt - r/m/d/h format,dt - unix format,temp,dew_point,pressure,humidity,wind_speed,wind_deg,clouds_all,PTotAvg [W]
+Time - r/m/d/h Format,Time - Unix Format,Temperature [K],Dew Point [K],Pressure [hPa],Humidity [%],Wind Speed [m/s],Wind Degree [°],Cloudiness [%],Total Average Power [W]
 2010-02-27 01:00:00,1267228800,277.2,276.32,997,94,3.81,228,100,0.0
 2010-02-27 02:00:00,1267232400,276.86,275.83,997,93,4.17,239,96,0.0
 2010-02-27 03:00:00,1267236000,276.79,275.92,998,94,4.64,249,97,0.0
