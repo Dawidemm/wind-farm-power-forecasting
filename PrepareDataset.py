@@ -56,7 +56,7 @@ class PrepareDataset():
 
     def split_power(self):
 
-        self.power = np.array(self.dataset.pop('Total Average Power [W]'))
+        self.power = np.array(self.dataset.pop('Total Average Power [W]'))//(10**6)
 
         return self
 
