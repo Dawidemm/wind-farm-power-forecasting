@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 import tensorflow as tf
-from sklearn.preprocessing import StandardScaler
 
 class PrepareDataset():
 
@@ -12,6 +11,7 @@ class PrepareDataset():
 
     def early_preparation(self):
         
+        self.unix = self.dataset['Time - Unix Format']
         self.dataset = self.dataset.drop(['Time - Unix Format'], axis=1)
 
         wind_speed = self.dataset.pop('Wind Speed [m/s]')
@@ -66,7 +66,7 @@ class PrepareDataset():
         self.dataset_std = self.dataset.std()
         return self
 
-    def train(self) -> tuple(np.array, np.array):
+    def train(self) -> tuple:
 
         train_dataset = self.dataset[0:int(self.lenght * 0.7)]
         train_dataset = (train_dataset - self.dataset_mean) / self.dataset_std
@@ -74,15 +74,15 @@ class PrepareDataset():
 
         return self.train_dataset, self.power[0:int(self.lenght * 0.7)]
 
-    def val(self) -> tuple(np.array, np.array):
+    def val(self) -> tuple:
 
-        val_dataset = self.dataset[int(self.lenght * 0.7):int(self.lenght * 0.9)]
+        val_dataset = self.dataset[int(self.lenght * 0.8):int(self.lenght * 0.9)]
         val_dataset = (val_dataset - self.dataset_mean) / self.dataset_std
         self.val_dataset = np.array(val_dataset).reshape(val_dataset.shape[0], val_dataset.shape[1], 1)
 
-        return self.val_dataset, self.power[int(self.lenght * 0.7):int(self.lenght * 0.9)]
+        return self.val_dataset, self.power[int(self.lenght * 0.8):int(self.lenght * 0.9)]
 
-    def test(self) -> tuple(np.array, np.array):
+    def test(self) -> tuple:
         
         test_dataset = self.dataset[int(self.lenght * 0.9):]
         test_dataset = (test_dataset - self.dataset_mean) / self.dataset_std
