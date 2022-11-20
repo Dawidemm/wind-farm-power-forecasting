@@ -66,7 +66,7 @@ class PrepareDataset():
         self.dataset_std = self.dataset.std()
         return self
 
-    def train(self) -> np.array:
+    def train(self) -> tuple(np.array, np.array):
 
         train_dataset = self.dataset[0:int(self.lenght * 0.7)]
         train_dataset = (train_dataset - self.dataset_mean) / self.dataset_std
@@ -74,7 +74,7 @@ class PrepareDataset():
 
         return self.train_dataset, self.power[0:int(self.lenght * 0.7)]
 
-    def val(self) -> np.array:
+    def val(self) -> tuple(np.array, np.array):
 
         val_dataset = self.dataset[int(self.lenght * 0.7):int(self.lenght * 0.9)]
         val_dataset = (val_dataset - self.dataset_mean) / self.dataset_std
@@ -82,7 +82,7 @@ class PrepareDataset():
 
         return self.val_dataset, self.power[int(self.lenght * 0.7):int(self.lenght * 0.9)]
 
-    def test(self) -> np.array:
+    def test(self) -> tuple(np.array, np.array):
         
         test_dataset = self.dataset[int(self.lenght * 0.9):]
         test_dataset = (test_dataset - self.dataset_mean) / self.dataset_std
