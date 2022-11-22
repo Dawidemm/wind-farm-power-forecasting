@@ -14,11 +14,11 @@ class PrepareDataset():
         self.unix = self.dataset['Time - Unix Format']
         self.dataset = self.dataset.drop(['Time - Unix Format'], axis=1)
 
-        wind_speed = self.dataset.pop('Wind Speed [m/s]')
+        self.wind_speed = self.dataset.pop('Wind Speed [m/s]')
         wind_degree = self.dataset.pop('Wind Degree [°]') * np.pi/180
 
-        self.dataset['Wind in axis X'] = wind_speed * np.cos(wind_degree)
-        self.dataset['Wind in axis Y'] = wind_speed * np.sin(wind_degree)
+        self.dataset['Wind in axis X'] = self.wind_speed * np.cos(wind_degree)
+        self.dataset['Wind in axis Y'] = self.wind_speed * np.sin(wind_degree)
 
         date_time = pd.to_datetime(self.dataset.pop('Time - y/m/d/h Format'), format='%Y.%m.%d %H')
         timestamp = date_time.map(pd.Timestamp.timestamp)
