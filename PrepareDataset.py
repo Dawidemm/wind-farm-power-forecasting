@@ -68,11 +68,11 @@ class PrepareDataset():
 
     def train(self) -> tuple:
 
-        train_dataset = self.dataset[0:int(self.lenght * 0.7)]
+        train_dataset = self.dataset[0:int(self.lenght * 0.8)]
         train_dataset = (train_dataset - self.dataset_mean) / self.dataset_std
         self.train_dataset = np.array(train_dataset).reshape(train_dataset.shape[0], train_dataset.shape[1], 1)
 
-        return self.train_dataset, self.power[0:int(self.lenght * 0.7)]
+        return self.train_dataset, self.power[0:int(self.lenght * 0.8)]
 
     def val(self) -> tuple:
 
