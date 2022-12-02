@@ -89,3 +89,35 @@ class PrepareDataset():
         self.test_dataset = np.array(test_dataset).reshape(test_dataset.shape[0], test_dataset.shape[1], 1)
 
         return self.test_dataset, self.power[int(self.lenght * 0.9):]
+
+class PrepareDatasetTimeDistributed(PrepareDataset):
+
+    def __init__(self, dataset: pd.DataFrame, subsequences: int) -> None:
+        
+        self.dataset = dataset
+        self.subsequences = subsequences
+        self.lenght = len(self.dataset)
+
+    def train(self) -> tuple:
+
+        train_dataset = self.dataset[0:int(self.lenght * 0.8)]
+        train_dataset = (train_dataset - self.dataset_mean) / self.dataset_std
+        self.train_dataset = np.array(train_dataset).reshape(int(train_dataset.shape[0]/self.subsequences), self.subsequences, train_dataset.shape[1], 1)
+
+        return self.train_dataset, self.power[0:int(self.lenght * 0.8)].reshape(int(len(self.power[0:int(self.lenght * 0.8)])/self.subsequences), self.subsequences)
+    
+    def val(self) -> tuple:
+
+        val_dataset = self.dataset[int(self.lenght * 0.8):int(self.lenght * 0.9)]
+        val_dataset = (val_dataset - self.dataset_mean) / self.dataset_std
+        self.val_dataset = np.array(val_dataset).reshape(int(val_dataset.shape[0]/self.subsequences), self.subsequences, val_dataset.shape[1], 1)
+
+        return self.val_dataset, self.power[int(self.lenght * 0.8):int(self.lenght * 0.9)].reshape( int(len(self.power[int(self.lenght * 0.8):int(self.lenght * 0.9)])/self.subsequences), self.subsequences)
+
+    def test(self) -> tuple:
+        
+        test_dataset = self.dataset[int(self.lenght * 0.9):]
+        test_dataset = (test_dataset - self.dataset_mean) / self.dataset_std
+        self.test_dataset = np.array(test_dataset).reshape(int(test_dataset.shape[0]/self.subsequences), self.subsequences, test_dataset.shape[1], 1)
+
+        return self.test_dataset, self.power[int(self.lenght * 0.9):].reshape(int(len(self.power[int(self.lenght * 0.9):])/self.subsequences), self.subsequences), self.power[int(self.lenght * 0.9):][::self.subsequences]
