@@ -1,7 +1,7 @@
 # wind-farm-power-forecasting
 
 ## Project Description
-The Bachelor's Thesis `# Wind Farm Power Forecasting Using Deep Neural Networks` project aimed to develop models for forecasting the power output of wind farms using advanced artificial intelligence techniques. Deep neural networks were employed, including convolutional neural networks (CNN), recurrent neural networks (RNN) such as Long Short-Term Memory (LSTM), and Gated Recurrent Unit (GRU).
+The Bachelor's Thesis `Wind Farm Power Forecasting Using Deep Neural Networks` project aimed to develop models for forecasting the power output of wind farms using advanced artificial intelligence techniques. Deep neural networks were employed, including convolutional neural networks (CNN), recurrent neural networks (RNN) such as Long Short-Term Memory (LSTM), and Gated Recurrent Unit (GRU).
 
 ## Methodology
 1. **Data Preparation:** Data pertaining to wind farms was collected and processed appropriately, taking into account seasonal and temporal variations in energy production.
@@ -14,12 +14,12 @@ The Bachelor's Thesis `# Wind Farm Power Forecasting Using Deep Neural Networks`
 - The results of experiments were thoroughly analyzed and documented, allowing for insights into the effectiveness of different forecasting methods.
 
 ### Example Prediction Plot (CNN Model)
-![CNN Prediction Plot](CNN.png)
+![CNN Prediction Plot](visualizations/CNN.png)
 
 ### R2 Score
 Here's a plot comparing the R2 scores of all utilized models:
 
-![R2 Score](R2score.png)
+![R2 Score](visualizations/R2score.png)
 
 ## Conclusions
 The project confirmed that deep neural networks, including models based on LSTM, RNN, and GRU, can be effective tools for forecasting wind farm power. Further research efforts can focus on refining these models and their implementation in industrial practice.
